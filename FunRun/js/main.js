@@ -1,7 +1,8 @@
-var last = false;
+var winners = [];
 
 $(function(){
-	
+	confetti();
+	$('#confetti').hide();
 	//GENERATE BOXES
 	var digitCount = participants.toString();
 	var digitBoxes = "";
@@ -16,9 +17,13 @@ $(function(){
 	
 	//BUTTON CLICK
 	$('#generate').click(function(){
-		last = false;
-	
-		luckyOne = (Math.floor(Math.random() * (participants - minNumber + 1)) + minNumber).toString();
+		//console.log(winners);
+		$('#confetti').hide();
+		luckyOne = generateWinner().toString();
+		if(luckyOne == -1){
+			alert("All Participants Already Win");
+			return false;
+		}
 		//console.log(digitCount.length - luckyOne.length);
 		for(var i = 0; i < digitCount.length - luckyOne.length; i++){
 			luckyOne = "0" +luckyOne;
@@ -39,6 +44,25 @@ $(function(){
 	
 	//confetti();
 });
+
+function generateWinner(){
+	if(winners.length == participants - minNumber + 1){
+		return -1;
+	}
+	var num = (Math.floor(Math.random() * (participants - minNumber + 1)) + minNumber);
+	while(!validate(num)){
+		num = (Math.floor(Math.random() * (participants - minNumber + 1)) + minNumber);
+	}
+	winners.push(num);
+	return num;
+}
+
+function validate(num){
+	for(var i = 0; i < winners.length; i++){
+		if(num == winners[i]) return false;
+	}
+	return true;
+}
 
 (function($){
     $.fn.extend({
@@ -101,7 +125,8 @@ $(function(){
 					if(settings.isLast){
 						setTimeout(function(){
 							$('#cheering')[0].play();
-							confetti();
+							
+							$('#confetti').show();
 						}, 1000);
 					}
                 }, settings.duration * 1000);
@@ -113,7 +138,7 @@ $(function(){
 function confetti(){
 	/* Confetti by Patrik Svensson (http://metervara.net) */
     var frameRate = 30;
-    var dt = 3.0 / frameRate;
+    var dt = confettiSpeed / frameRate;
     var DEG_TO_RAD = Math.PI / 180;
     var RAD_TO_DEG = 180 / Math.PI;
     var colors = [
