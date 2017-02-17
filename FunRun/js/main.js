@@ -17,6 +17,7 @@ $(function(){
 	
 	//BUTTON CLICK
 	$('#generate').click(function(){
+		$(this).invisible();
 		//console.log(winners);
 		$('#confetti').hide();
 		luckyOne = generateWinner().toString();
@@ -127,6 +128,8 @@ function validate(num){
 							$('#cheering')[0].play();
 							
 							$('#confetti').show();
+							
+							$('#generate').visible();
 						}, 1000);
 					}
                 }, settings.duration * 1000);
@@ -134,6 +137,14 @@ function validate(num){
         }
     });
 })(jQuery);
+
+jQuery.fn.visible = function() {
+    return this.css('visibility', 'visible');
+};
+
+jQuery.fn.invisible = function() {
+    return this.css('visibility', 'hidden');
+};
 
 function confetti(){
 	/* Confetti by Patrik Svensson (http://metervara.net) */
