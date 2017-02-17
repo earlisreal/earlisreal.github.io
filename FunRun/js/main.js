@@ -3,6 +3,7 @@ var winners = [];
 $(function(){
 	confetti();
 	$('#confetti').hide();
+	
 	//GENERATE BOXES
 	var digitCount = participants.toString();
 	var digitBoxes = "";
@@ -14,41 +15,41 @@ $(function(){
 	$('#digits-div').html(digitBoxes);
 	$('#sounds-div').append(soundEffects);
 	
+	$(".se-pre-con").fadeOut("slow");
+});
+
+
+//BUTTON CLICK
+$('#generate').click(function(){
+	$(this).invisible();
+	//console.log(winners);
+	$('#confetti').hide();
 	
-	//BUTTON CLICK
-	$('#generate').click(function(){
-		$(this).invisible();
-		//console.log(winners);
-		$('#confetti').hide();
-		
-		luckyOne = "";
-		for(var i = 0; i < digitCount.length; i++){
-			luckyOne += "0";
-		}
-		
-		luckyNumber = generateWinner().toString();
-		if(luckyNumber == -1){
-			alert("All Participants Already Win");
-			return false;
-		}
-		
-		luckyOne += luckyNumber;
-		
-		//console.log("lucky one -> " +luckyOne);
-		$('.digit').each(function(index, value){
-			//console.log(parseInt(luckyOne[index]));
-			if(index + 1 == digitCount.length) last = true;
-			$(this).numAnim({
-				endAt: parseInt(luckyOne[luckyOne.length - index - 1]),
-				duration: index * animationDuration + animationDuration,
-				index: index,
-				isLast: index + 1 == digitCount.length ? true : false
-			});
+	luckyOne = "";
+	for(var i = 0; i < digitCount.length; i++){
+		luckyOne += "0";
+	}
+	
+	luckyNumber = generateWinner().toString();
+	if(luckyNumber == -1){
+		alert("All Participants Already Win");
+		return false;
+	}
+	
+	luckyOne += luckyNumber;
+	
+	//console.log("lucky one -> " +luckyOne);
+	$('.digit').each(function(index, value){
+		//console.log(parseInt(luckyOne[index]));
+		if(index + 1 == digitCount.length) last = true;
+		$(this).numAnim({
+			endAt: parseInt(luckyOne[luckyOne.length - index - 1]),
+			duration: index * animationDuration + animationDuration,
+			index: index,
+			isLast: index + 1 == digitCount.length ? true : false
 		});
-		
 	});
 	
-	//confetti();
 });
 
 function generateWinner(){
