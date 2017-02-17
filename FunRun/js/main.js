@@ -18,6 +18,7 @@ $(function(){
 	
 	//BUTTON CLICK
 	$('#generate').click(function(){
+		$('#slot-machine')[0].play();
 		$(this).invisible();
 		//console.log(winners);
 		$('#confetti').hide();
@@ -35,12 +36,16 @@ $(function(){
 		
 		luckyOne += luckyNumber;
 		
+		luckyOne = luckyOne.substring(luckyOne.length - digitCount.length);
+		
+		
+		//console.log("lucky number -> " +luckyNumber);
 		//console.log("lucky one -> " +luckyOne);
 		$('.digit').each(function(index, value){
 			//console.log(parseInt(luckyOne[index]));
 			if(index + 1 == digitCount.length) last = true;
 			$(this).numAnim({
-				endAt: parseInt(luckyOne[luckyOne.length - index - 1]),
+				endAt: parseInt(luckyOne[index]),
 				duration: index * animationDuration + animationDuration,
 				index: index,
 				isLast: index + 1 == digitCount.length ? true : false

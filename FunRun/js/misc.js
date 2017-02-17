@@ -66,12 +66,16 @@ jQuery.fn.invisible = function() {
                 setTimeout( function() {
                     $this.text( settings.endAt.toString() );
 					
-					$('.glass')[settings.index].play();
+					//$('.glass')[settings.index].play();
 					
 					if(settings.isLast){
 						//Delay Playing Sound and Showing Button
 						setTimeout(function(){
-							$('#cheering')[0].play();
+							var audio = document.getElementById("win");
+							audio.addEventListener("ended", function() {
+								$('#cheering')[0].play();
+							});
+							audio.play()
 							
 							$('#confetti').show();
 							
