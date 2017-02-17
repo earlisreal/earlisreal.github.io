@@ -69,6 +69,7 @@ jQuery.fn.invisible = function() {
 					$('.glass')[settings.index].play();
 					
 					if(settings.isLast){
+						//Delay Playing Sound and Showing Button
 						setTimeout(function(){
 							$('#cheering')[0].play();
 							

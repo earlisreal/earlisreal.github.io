@@ -20,21 +20,26 @@ $(function(){
 		$(this).invisible();
 		//console.log(winners);
 		$('#confetti').hide();
-		luckyOne = generateWinner().toString();
-		if(luckyOne == -1){
+		
+		luckyOne = "";
+		for(var i = 0; i < digitCount.length; i++){
+			luckyOne += "0";
+		}
+		
+		luckyNumber = generateWinner().toString();
+		if(luckyNumber == -1){
 			alert("All Participants Already Win");
 			return false;
 		}
-		//console.log(digitCount.length - luckyOne.length);
-		for(var i = 0; i < digitCount.length - luckyOne.length; i++){
-			luckyOne = "0" +luckyOne;
-		}
+		
+		luckyOne += luckyNumber;
+		
 		//console.log("lucky one -> " +luckyOne);
 		$('.digit').each(function(index, value){
 			//console.log(parseInt(luckyOne[index]));
 			if(index + 1 == digitCount.length) last = true;
 			$(this).numAnim({
-				endAt: parseInt(luckyOne[index]),
+				endAt: parseInt(luckyOne[luckyOne.length - index - 1]),
 				duration: index * animationDuration + animationDuration,
 				index: index,
 				isLast: index + 1 == digitCount.length ? true : false
