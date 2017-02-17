@@ -14,10 +14,17 @@ $(function(){
 	}
 	$('#digits-div').html(digitBoxes);
 	$('#sounds-div').append(soundEffects);
+	$('#generate').visible();
 	
 	
 	//BUTTON CLICK
 	$('#generate').click(function(){
+		luckyNumber = generateWinner().toString();
+		if(luckyNumber == -1){
+			alert("All Participants Already Win");
+			return false;
+		}
+		
 		$('#slot-machine')[0].play();
 		$(this).invisible();
 		//console.log(winners);
@@ -27,15 +34,7 @@ $(function(){
 		for(var i = 0; i < digitCount.length; i++){
 			luckyOne += "0";
 		}
-		
-		luckyNumber = generateWinner().toString();
-		if(luckyNumber == -1){
-			alert("All Participants Already Win");
-			return false;
-		}
-		
 		luckyOne += luckyNumber;
-		
 		luckyOne = luckyOne.substring(luckyOne.length - digitCount.length);
 		
 		
@@ -55,9 +54,9 @@ $(function(){
 	});
 	
 	//REALEASE PAGE LOADER
-	setTimeout(function(){
-		$(".se-pre-con").fadeOut("slow");
-	}, 500);
+	// setTimeout(function(){
+		// $(".se-pre-con").fadeOut("slow");
+	// }, 500);
 });
 
 
