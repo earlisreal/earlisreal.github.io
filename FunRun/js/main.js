@@ -18,7 +18,7 @@ $(function(){
 	
 	
 	//BUTTON CLICK
-	$('#generate').click(function(){
+	$('#generate').click(function(){			
 		luckyNumber = generateWinner().toString();
 		if(luckyNumber == -1){
 			alert("All Participants Already Win");
@@ -51,6 +51,8 @@ $(function(){
 			});
 		});
 		
+		
+		console.log("Roll Count: " +winners.length);
 	});
 	
 	//REALEASE PAGE LOADER
@@ -79,3 +81,10 @@ function validate(num){
 	}
 	return true;
 }
+
+
+$(window).bind('beforeunload', function(){
+	if(winners.length > 0)
+		return "All winners will have another chance to win";
+});
+				
