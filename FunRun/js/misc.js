@@ -74,12 +74,16 @@ jQuery.fn.invisible = function() {
 							var audio = document.getElementById("win");
 							audio.addEventListener("ended", function() {
 								$('#cheering')[0].play();
+								
+								$('#draw-again').show();
 							});
 							audio.play()
 							
 							$('#confetti').show();
 							
-							$('#generate').visible();
+							//$('#winner').effect("size", { to: {width: 640, height: 360} }, 1000);
+							
+							$('#winner').show("scale",{}, 500).fadeOut(250).fadeIn(250).fadeOut(250).fadeIn(250).fadeOut(250).fadeIn(250);
 						}, 1000);
 					}
                 }, settings.duration * 1000);

@@ -51,6 +51,16 @@ $(function(){
 			});
 		});
 		
+		$('#draw-again').click(function() {
+			$('#winner').hide();
+			$('#confetti').hide();
+			$('#generate').visible();
+			$('.digit').each(function(){
+				$(this).text("0");
+			});
+			$(this).hide();
+		});
+		
 		
 		console.log("Roll Count: " +winners.length);
 	});
