@@ -123,4 +123,10 @@ div {
     right: 8px;
 }
 
-        
+#created-by {
+	font-size: 20px;
+	position: absolute;
+    bottom: 8px;
+    left: 8px;
+}
+      
