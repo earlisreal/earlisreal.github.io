@@ -26,7 +26,8 @@ body {
 	text-align: center;
     margin: 20px;
     padding: 20px;
-    background: gray;
+    background: #333333;
+	/* #1a1a1a */
     border-radius: 10px;
     font-size: 120px;
     width: 120px;
@@ -124,7 +125,7 @@ div {
 }
 
 #created-by {
-	font-size: 20px;
+	font-size: 22px;
 	position: absolute;
     bottom: 8px;
     left: 8px;
