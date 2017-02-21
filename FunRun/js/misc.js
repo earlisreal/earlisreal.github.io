@@ -22,7 +22,8 @@ jQuery.fn.invisible = function() {
                 duration: 5,   // seconds
                 interval: 90,  // ms
 				index: 0,
-				isLast: false
+				isLast: false,
+				maxDigit: 9
             };
             var settings = $.extend({}, this.defaults, options);
 
@@ -44,7 +45,7 @@ jQuery.fn.invisible = function() {
 
                 var get_next_num = function(num) {
                     ++num;
-                    if (num > 9) return 0;
+                    if (num > settings.maxDigit) return 0;
                     return num;
                 };
 

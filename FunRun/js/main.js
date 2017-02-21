@@ -10,7 +10,6 @@ $(function(){
 	var soundEffects = "";
 	for(var i = 0; i < digitCount.length; i++){
 		digitBoxes += '<span class="digit">0</span>';
-		soundEffects += '<audio class="glass" src="sounds/glass.mp3"></audio>';
 	}
 	$('#digits-div').html(digitBoxes);
 	$('#sounds-div').append(soundEffects);
@@ -47,7 +46,8 @@ $(function(){
 				endAt: parseInt(luckyOne[index]),
 				duration: index * animationDuration + animationDuration,
 				index: index,
-				isLast: index + 1 == digitCount.length ? true : false
+				isLast: index + 1 == digitCount.length ? true : false,
+				maxDigit: index == 0 ? digitCount[0] : 9
 			});
 		});
 		
